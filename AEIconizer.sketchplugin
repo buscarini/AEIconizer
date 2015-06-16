@@ -85,19 +85,30 @@ function iconize(originalIcon) {
       var newY = originalY + originalSize + iconsRowHeight + spacing;
 
       // Icon-Size@3x
-      var icon3x = scaleIcon(originalIcon, newSize * 3, iconName + "@3x");
-      [[icon3x absoluteRect] setRulerX:newX];
-      [[icon3x absoluteRect] setRulerY:newY];
+	  if (newSize!=76) {
+	      var icon3x = scaleIcon(originalIcon, newSize * 3, iconName + "@3x");
+	      [[icon3x absoluteRect] setRulerX:newX];
+	      [[icon3x absoluteRect] setRulerY:newY];	  	
+	  }
 
       // Icon-Size@2x
       var icon2x = scaleIcon(originalIcon, newSize * 2, iconName + "@2x");
       [[icon2x absoluteRect] setRulerX:newX + (newSize * 3) + spacing];
       [[icon2x absoluteRect] setRulerY:newY];
+	  
+	  if (newSize==40 || newSize==29) {
+	      // Icon-Size@2x
+	      var icon2x = scaleIcon(originalIcon, newSize * 2, iconName + "@2x" + "-1");
+	      [[icon2x absoluteRect] setRulerX:newX + (newSize * 3) + spacing];
+	      [[icon2x absoluteRect] setRulerY:newY];
+	  }
 
       // Icon-Size
-      var icon1x = scaleIcon(originalIcon, newSize, iconName);
-      [[icon1x absoluteRect] setRulerX:newX + (newSize * 3) + (newSize * 2) + (2 * spacing)];
-      [[icon1x absoluteRect] setRulerY:newY];
+	  if (newSize!=60) {
+	      var icon1x = scaleIcon(originalIcon, newSize, iconName);
+	      [[icon1x absoluteRect] setRulerX:newX + (newSize * 3) + (newSize * 2) + (2 * spacing)];
+	      [[icon1x absoluteRect] setRulerY:newY];	  	
+	  }
 
       // create new row
       iconsRowHeight += (newSize * 3) + spacing;
